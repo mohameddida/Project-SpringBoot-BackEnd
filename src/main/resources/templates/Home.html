@@ -2,8 +2,47 @@
 <html xmlns:th="https://www.thymeleaf.org">
   <head>
     <title>Immeuble Application</title>
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 20px;
+      }
+
+      .article-container {
+        display: flex;
+        flex-wrap: wrap;
+      }
+      .article-card:hover {
+        transform: scale(1.05);
+      }
+      .article-card {
+        width: 300px;
+        margin: 10px;
+        padding: 10px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        text-align: center;
+      }
+
+      .article-image {
+        max-width: 100%;
+        height: auto;
+      }
+    </style>
   </head>
   <body>
-    <h1>hello my APP</h1>
+    <h1>Available Articles</h1>
+    <div class="article-container" th:each="article : ${articles}">
+      <a th:href="@{/article_details/{id}(id=${article.id})}"></a>
+      <div class="article-card">
+        <img
+          class="article-image"
+          th:src="${article.photoUrl}"
+          alt="Article Photo"
+        />
+        <h3 th:text="${article.name}"></h3>
+        <p th:text="${article.description}"></p>
+      </div>
+    </div>
   </body>
 </html>

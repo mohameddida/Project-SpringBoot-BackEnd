@@ -32,7 +32,7 @@ public class AuthController {
 
     @PostMapping("/saveUser")
     public String saveUser(
-            @ModelAttribute User user,
+            @ModelAttribute ("user") User user,
             Model model) {
         Long id = userService.saveUser(user);
         String message = "User '" + id + "' saved successfully !";
