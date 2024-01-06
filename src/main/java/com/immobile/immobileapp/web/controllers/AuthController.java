@@ -1,9 +1,12 @@
 package com.immobile.immobileapp.web.controllers;
 
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
+
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -19,25 +22,27 @@ public class AuthController {
 
     @GetMapping("/login")
     public String login(Authentication authentication) {
-        if (authentication != null && authentication.isAuthenticated()) {
-            return "redirect:/access-denied";
-        }
+
         return "login";
     }
 
     @GetMapping("/register")
-    public String register() {
-        return "register-user";
-    }
+public String showRegistrationForm(Model model) {
+    model.addAttribute("user", new User());
+    return "register-user";
+}
 
-    @PostMapping("/saveUser")
-    public String saveUser(
-            @ModelAttribute ("user") User user,
-            Model model) {
-        Long id = userService.saveUser(user);
-        String message = "User '" + id + "' saved successfully !";
-        model.addAttribute("msg", message);
-        return "register-user" + user;
+    @PostMapping("/register")
+    public String saveUser(@ModelAttribute("user") @Valid User user, BindingResult bindingResult) {
+        if (bindingResult.hasErrors()) {
+
+            return "register-user";
+        }
+
+         userService.saveUser(user);
+
+
+        return "redirect:/login";
     }
 
 }

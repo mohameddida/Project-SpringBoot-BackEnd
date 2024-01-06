@@ -26,7 +26,7 @@ public class WebSecurityConfig {
         public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
                 http
                                 .authorizeHttpRequests((requests) -> requests
-                                                .requestMatchers("/", "/register", "/login")
+                                                .requestMatchers("/**", "/register", "/login")
                                                 .permitAll()
                                                 .requestMatchers("/admin").hasAuthority("ADMIN")
                                                 .requestMatchers("/user").hasAuthority("USER")
@@ -35,6 +35,8 @@ public class WebSecurityConfig {
                                                 .anyRequest().authenticated())
                                 .formLogin((form) -> form
                                                 .loginPage("/login")
+                                        .usernameParameter("email")
+                                        .passwordParameter("password")
                                                 .permitAll()
                                                 .defaultSuccessUrl("/articles", true)
                                                 .successHandler(myAuthenticationSuccessHandler()))

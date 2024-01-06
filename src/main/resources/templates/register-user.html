@@ -59,14 +59,12 @@
     </style>
   </head>
   <body>
-    <form th:action="@{/saveUser}" th:object="${t_user}" method="post">
-      <label for="username">Username:</label>
-      <input
-        type="text"
-        id="username"
-        name="username"
-        th:field="*{username}"
-      /><br />
+  <form th:action="@{/register}" th:object="${user}" method="post">
+
+    <label for="username">Username:</label>
+    <input type="text" id="username" name="username" th:field="*{username}" />
+
+
 
       <label for="password">Password:</label>
       <input
@@ -80,7 +78,7 @@
       <input type="email" id="email" name="email" th:field="*{email}" /><br />
 
       <label for="gender">Gender:</label>
-      <select id="gender" name="gender" th:field="*{gender}">
+      <select id="gender" name="gender" th:field="*{gendre}">
         <option value="male">Male</option>
         <option value="female">Female</option></select
       ><br />

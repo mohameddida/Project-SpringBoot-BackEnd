@@ -3,6 +3,7 @@
   <head>
     <title>User Registration Form</title>
     <style>
+
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         background: url("https://images.unsplash.com/photo-1611829517505-0235064854fc?q=80&w=1771&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D")
@@ -54,19 +55,28 @@
     </style>
   </head>
   <body>
-    <form th:action="@{/saveUser}" th:object="${user}" method="post">
-      <label for="email">Email:</label>
-      <input type="email" id="email" name="email" th:field="*{email}" /><br />
 
-      <label for="password">Password:</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        th:field="*{password}"
-      /><br />
+  <form th:action="@{/login}"  method="post">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email"  /><br />
 
-      <button type="submit">Login</button>
-    </form>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password"  /><br />
+
+    <!-- Display validation errors -->
+<!--    <p th:if="${#fields.hasErrors('email')}" >Invalid email</p>-->
+<!--    <p th:if="${#fields.hasErrors('password')}" >Invalid password</p>-->
+
+    <button type="submit">Save User</button>
+  </form>
+<!--  <form-->
+<!--    th:action="@{/login}"    method="post" >-->
+<!--    <label for="email">Email:</label>&ndash;&gt;-->
+<!--      <input type="email" id="email" name="email" /><br />-->
+
+<!--      <label for="password">Password:</label>-->
+<!--        <input type="password" id="password" name="password"/><br />-->
+
+  </form>
   </body>
 </html>

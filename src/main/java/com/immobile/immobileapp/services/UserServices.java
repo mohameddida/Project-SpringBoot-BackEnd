@@ -19,5 +19,5 @@ public interface UserServices {
     // register new user
     public Optional<User> getUsersByImmeubleId(User client);
 
-    public Long saveUser(User user);
+    public void saveUser(User user);
 }
