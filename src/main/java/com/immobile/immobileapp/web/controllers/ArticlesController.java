@@ -33,6 +33,16 @@ public class ArticlesController {
       model.addAttribute("art", article);
     return "article_details";
   }
+  @GetMapping
+  public String showArticleList(Model model) {
+    model.addAttribute("Articles", this.articlesServices.getAllArticles());
+    return "Home";
+  }
+  @GetMapping("/gestion")
+  public String adminarticle (Model model){
+    model.addAttribute("articles", this.articlesServices.getAllArticles());
+    return "gestion_articles";
+  }
 
 
 
@@ -70,11 +80,7 @@ public class ArticlesController {
   }
 
   // Read
-  @GetMapping
-  public String showArticleList(Model model) {
-    model.addAttribute("Articles", this.articlesServices.getAllArticles());
-    return "Home";
-  }
+
 
   // Update
   @GetMapping("/{id}/edit")
@@ -118,12 +124,15 @@ public class ArticlesController {
   }
 
   // Delete
-  @PostMapping("/{id}/delete")
+  @PostMapping("/delete/{id}")
   public String deleteArticle(@PathVariable("id") Long id) {
     Article article = articlesServices.getArticle(id);
+
     if (article == null) {
-      // Handle product not found
+
+      return "redirect:/error";
     }
+
     this.articlesServices.deleteArticle(id);
     return "redirect:/articles";
   }

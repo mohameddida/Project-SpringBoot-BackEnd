@@ -1,9 +1,66 @@
 <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Gestion Articles</title>
-  </head>
-  <body></body>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Gestion Articles</title>
+</head>
+
+<body>
+  <div>
+    <h3>Gestion d'article</h3>
+
+    <table>
+      <caption>
+        Articles
+      </caption>
+      <thead>
+        <tr>
+          <th>ID</th>
+          <th>Description</th>
+          <th>Price</th>
+          <th>Emplacement</th>
+          <th>Action</th>
+
+        </tr>
+      </thead>
+      <tbody>
+        <tr th:each="article : ${articles}">
+          <td contenteditable="false" th:text="${article.id}">Name</td>
+          <td contenteditable="false" th:text="${article.description}">Prenom</td>
+          <td contenteditable="false" th:text="${article.price}">Age</td>
+          <td contenteditable="false" th:text="${article.emplacement}">Niveau</td>
+
+
+          <td>
+            <form th:action="@{/article/delete/{id}}" method="post">
+              <input type="hidden" name="id" th:value="${article.id}" />
+              <button type="submit">Delete</button>
+            </form>
+          </td>
+
+          </form>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</body>
+
 </html>
+
+<!-- <button class="delete-button" th:onclick="'deleteStudent(' + ${article.id} + ')'">
+  Delete
+</button>
+<button onclick="toggleEdit(this)">Modifier</button>
+</td>
+</tr>
+</tbody>
+</table>
+
+</div>
+
+
+</body>
+
+</html> -->

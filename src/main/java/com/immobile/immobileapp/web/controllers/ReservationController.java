@@ -35,7 +35,6 @@ public class ReservationController {
 
         }
 
-        // Create a new product object from the request body
         Reservation reservation = new Reservation();
         reservation.setDateDeVisite(reservationForm.getDateDeVisite());
         model.addAttribute("reservationForm", reservationForm);
