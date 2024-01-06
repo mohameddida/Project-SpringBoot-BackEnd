@@ -32,17 +32,19 @@
   </head>
   <body>
     <h1>Available Articles</h1>
-    <div class="article-container" th:each="article : ${articles}">
-      <a th:href="@{/article_details/{id}(id=${article.id})}"></a>
+    <div class="article-container" th:each="article : ${Articles}">
+      <a th:href="@{|/articles/detail/${article.id}|}">
       <div class="article-card">
+
         <img
           class="article-image"
-          th:src="${article.photoUrl}"
+          th:src="${article.description}"
           alt="Article Photo"
         />
-        <h3 th:text="${article.name}"></h3>
-        <p th:text="${article.description}"></p>
+        <h3 th:text="${article.emplacement}"></h3>
+        <p th:text="${article.id}"></p>
       </div>
+      </a>
     </div>
   </body>
 </html>

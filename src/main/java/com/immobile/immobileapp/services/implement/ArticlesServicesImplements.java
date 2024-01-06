@@ -16,8 +16,8 @@ public class ArticlesServicesImplements implements ArticlesServices {
     private ArticlesRepesitory articlesRepesitory;
 
     @Override
-    public Optional<Article> getArticle(Long id) {
-        return this.articlesRepesitory.findById(id);
+    public Article getArticle(Long id) {
+        return articlesRepesitory.findById(id).orElse(null);
     }
 
     @Override

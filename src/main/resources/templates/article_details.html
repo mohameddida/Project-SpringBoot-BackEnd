@@ -1,9 +1,26 @@
-<!DOCTYPE html>
-<html lang="en">
+<!DOCTYPE html  >
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Article Details</title>
   </head>
-  <body></body>
+  <body>
+
+    <div th:object="${art}">
+      <h3>Article Details</h3>
+        <p th:text="${art.id}"></p>
+        <p th:text="${art.emplacement}"></p>
+        <p th:text="${art.description}"></p>
+        <p th:text="${art.price}"></p>
+
+
+
+    </div>
+
+    <div>
+      <h3>Article Image</h3>
+      <img src="https://picsum.photos/200/300" alt="Article Image" />
+    </div>
+  </body>
 </html>

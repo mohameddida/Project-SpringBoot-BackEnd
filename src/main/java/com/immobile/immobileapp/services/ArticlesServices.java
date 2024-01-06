@@ -6,7 +6,7 @@ import java.util.Optional;
 import com.immobile.immobileapp.doa.entities.Article;
 
 public interface ArticlesServices {
-    Optional<Article> getArticle(Long id);
+    Article getArticle(Long id);
 
     Article addArticle(Article article);
 
