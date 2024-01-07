@@ -6,15 +6,26 @@
       body {
         font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
         margin: 20px;
+        background-color: #f4f4f4;
+        text-align: center;
+      }
+
+      h1 {
+        color: #333;
       }
 
       .article-container {
         display: flex;
+        justify-content: center;
+        align-items: center;
         flex-wrap: wrap;
       }
+
       .article-card:hover {
         transform: scale(1.05);
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
       }
+
       .article-card {
         width: 300px;
         margin: 10px;
@@ -22,28 +33,31 @@
         border: 1px solid #ddd;
         border-radius: 5px;
         text-align: center;
+        background-color: #fff;
+        transition: transform 0.3s, box-shadow 0.3s;
       }
 
       .article-image {
         max-width: 100%;
         height: auto;
+        border-radius: 5px;
       }
     </style>
   </head>
+
   <body>
     <h1>Available Articles</h1>
     <div class="article-container" th:each="article : ${Articles}">
       <a th:href="@{|/articles/detail/${article.id}|}">
-      <div class="article-card">
-
-        <img
-          class="article-image"
-          th:src="${article.description}"
-          alt="Article Photo"
-        />
-        <h3 th:text="${article.emplacement}"></h3>
-        <p th:text="${article.id}"></p>
-      </div>
+        <div class="article-card">
+          <img
+            class="article-image"
+            th:src="${article.imageMain}"
+            alt="Article Photo"
+          />
+          <h3 th:text="${article.emplacement}"></h3>
+          <p th:text="${article.description}"></p>
+        </div>
       </a>
     </div>
   </body>

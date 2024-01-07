@@ -1,26 +1,115 @@
-<!DOCTYPE html  >
+<!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Article Details</title>
-  </head>
-  <body>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/flatpickr/dist/flatpickr.min.css"
+    />
+    <style>
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        margin: 20px;
+        background-color: #f4f4f4;
+        text-align: center;
+      }
 
-    <div th:object="${art}">
-      <h3>Article Details</h3>
+      h3 {
+        color: #333;
+      }
+
+      .article-details {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+
+      .article-card {
+        width: 300px;
+        margin: 10px;
+        padding: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        text-align: center;
+        background-color: #fff;
+        transition: transform 0.3s, box-shadow 0.3s;
+      }
+
+      .article-image {
+        max-width: 100%;
+        height: auto;
+        border-radius: 5px;
+        margin-top: 10px;
+      }
+
+      .reserve-button {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+      }
+
+      .reserve-button:hover {
+        background-color: #45a049;
+      }
+
+      #datepicker {
+        width: 100%;
+        padding: 10px;
+        box-sizing: border-box;
+        margin-bottom: 10px;
+      }
+    </style>
+  </head>
+
+  <body>
+    <div class="article-details" th:object="${art}">
+      <div class="article-card">
+        <h3>Article Details</h3>
         <p th:text="${art.id}"></p>
         <p th:text="${art.emplacement}"></p>
         <p th:text="${art.description}"></p>
         <p th:text="${art.price}"></p>
 
+        <!-- Date Picker -->
+        <input type="text" id="datepicker" placeholder="Pick a date" />
 
+        <!-- Reserver Button -->
+        <button class="reserve-button" onclick="reserveArticle()">
+          Reserver
+        </button>
+      </div>
 
+      <div class="article-card">
+        <h3>Article Image</h3>
+        <img
+          class="article-image"
+          th:src="${art.imageMain}"
+          alt="Article Image"
+        />
+      </div>
     </div>
 
-    <div>
-      <h3>Article Image</h3>
-      <img src="https://picsum.photos/200/300" alt="Article Image" />
-    </div>
+    <!-- Flatpickr Date Picker Library -->
+    <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
+
+    <script>
+      flatpickr("#datepicker", {
+        enableTime: false,
+        dateFormat: "Y-m-d",
+      });
+
+      function reserveArticle() {
+        var selectedDate = document.getElementById("datepicker").value;
+        // You can add logic to submit the reservation with Thymeleaf object (e.g., using AJAX).
+        console.log("Reservation submitted with date:", selectedDate);
+      }
+    </script>
   </body>
 </html>
