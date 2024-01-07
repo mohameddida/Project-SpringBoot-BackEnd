@@ -83,15 +83,13 @@ public class ArticlesController {
 
 
   // Update
-  @GetMapping("/{id}/edit")
-  public String showEditForm(@PathVariable("id") Long id, Model model) {
+  @GetMapping("/edit/{id}")
+  public String showEditForm(@PathVariable Long id, Model model) {
     Article article = articlesServices.getArticle(id);
-    if (article == null) {
-      return "edit";
-    }
+    model.addAttribute("article",article);
 
 
-    return "edit";
+    return "editarticle";
   }
 
   @PostMapping("/{id}/edit")
@@ -123,18 +121,11 @@ public class ArticlesController {
     return "redirect:/products";
   }
 
-  // Delete
+
   @PostMapping("/delete/{id}")
-  public String deleteArticle(@PathVariable("id") Long id) {
-    Article article = articlesServices.getArticle(id);
-
-    if (article == null) {
-
-      return "redirect:/error";
-    }
-
-    this.articlesServices.deleteArticle(id);
-    return "redirect:/articles";
+  public String deleteArticle(@PathVariable Long id) {
+    articlesServices.deleteArticle(id);
+    return "redirect:/articles/gestion";
   }
 
 
