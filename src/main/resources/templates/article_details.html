@@ -77,10 +77,10 @@
         <p th:text="${art.description}"></p>
         <p th:text="${art.price}"></p>
 
-        <!-- Date Picker -->
+        
         <input type="text" id="datepicker" placeholder="Pick a date" />
 
-        <!-- Reserver Button -->
+       
         <form th:action="@{/reservation/create/{id}(id=${art.id})}" method="post">
           <button class="reserve-button" type="submit" th:text="Reserver">Reserver</button>
         </form>
@@ -109,7 +109,7 @@
 
       function reserveArticle() {
         var selectedDate = document.getElementById("datepicker").value;
-        // You can add logic to submit the reservation with Thymeleaf object (e.g., using AJAX).
+        
         console.log("Reservation submitted with date:", selectedDate);
       }
     </script>

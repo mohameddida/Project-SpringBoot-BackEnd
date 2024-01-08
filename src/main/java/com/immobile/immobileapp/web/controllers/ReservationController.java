@@ -13,9 +13,7 @@ import com.immobile.immobileapp.doa.entities.Reservation;
 import com.immobile.immobileapp.services.ArticlesServices;
 import com.immobile.immobileapp.services.ReservationServices;
 import com.immobile.immobileapp.services.UserServices;
-import com.immobile.immobileapp.web.models.requests.ReservationForm;
 
-import jakarta.validation.Valid;
 
 @RestController
 @RequestMapping("/reservation")
@@ -34,17 +32,13 @@ public class ReservationController {
 
 
 
-
         reservation.setDateDeVisite(reservation.getDateDeVisite());
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
 
 
-
-//        reservation.setClientId( userDetailsService.loadUserByUsername(currentPrincipalName));
-
-
+        reservation.setClientId((User) userDetailsService.loadUserByUsername(currentPrincipalName));
         reservation.setArticleId(articlesServices.getArticle(id));
 
 

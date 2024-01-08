@@ -7,8 +7,6 @@ import com.immobile.immobileapp.doa.entities.Article;
 import com.immobile.immobileapp.repesitory.ArticlesRepesitory;
 import com.immobile.immobileapp.services.ArticlesServices;
 
-import java.util.List;
-
 @Service
 public class ArticlesServicesImplements implements ArticlesServices {
     @Autowired
@@ -35,7 +33,7 @@ public class ArticlesServicesImplements implements ArticlesServices {
     }
 
     @Override
-    public List<Article> getAllArticles() {
+    public Article getAllArticles() {
         return articlesRepesitory.findAll();
     }
 

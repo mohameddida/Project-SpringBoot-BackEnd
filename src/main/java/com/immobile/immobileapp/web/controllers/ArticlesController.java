@@ -2,7 +2,6 @@ package com.immobile.immobileapp.web.controllers;
 
 import java.util.Optional;
 
-import com.immobile.immobileapp.doa.entities.Reservation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -32,7 +31,6 @@ public class ArticlesController {
    Article article = articlesServices.getArticle(id);
 
       model.addAttribute("art", article);
-      model.addAttribute("res",new Reservation());
     return "article_details";
   }
   @GetMapping
