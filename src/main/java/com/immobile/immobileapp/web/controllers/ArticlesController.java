@@ -41,6 +41,7 @@ public class ArticlesController {
   @GetMapping("/gestion")
   public String adminarticle (Model model){
     model.addAttribute("articles", this.articlesServices.getAllArticles());
+    model.addAttribute("article",new Article());
     return "gestion_articles";
   }
 
@@ -55,28 +56,15 @@ public class ArticlesController {
     return "create";
   }
 
-  @PostMapping("/create")
-  public String createArticle(@ModelAttribute("ArticleForm") @Valid ArticleForm articleForm,
-      BindingResult bindingResult, Model model) {
-    if (bindingResult.hasErrors()) {
-      model.addAttribute("article", articlesServices.getAllArticles());
-      return "article/create";
+  @PostMapping("/new")
+  public String createArticle(@ModelAttribute Article article) {
+    article.setId(null);
+    articlesServices.addArticle(article);
 
-    }
+      return "redirect:/articles/gestion";
 
 
-    Article article = new Article();
-    article.setPrice(articleForm.getPrice());
-    article.setEmplacement(articleForm.getEmplacement());
-    article.setDescription(articleForm.getDescription());
-    article.setImageMain(articleForm.getImageMain());
-    article.setImageOne(articleForm.getImageOne());
-    article.setImageTwo(articleForm.getImageTwo());
-    article.setImageThree(articleForm.getImageThree());
-    article.setNbrPiece(articleForm.getNbrPiece());
-    article.setDisponible(articleForm.getDisponible());
 
-    return "redirect:/articles";
   }
 
   // Read

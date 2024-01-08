@@ -169,21 +169,21 @@
 
       <div class="add-article-form">
         <h3>Add New Article</h3>
-        <form th:action="@{/articles/add}" method="post">
+        <form th:action="@{/articles/new}" method="post"  th:object="${article}">
           <label>ID:</label>
-          <input type="text" name="newId" required />
+          <input type="text" name="newId" required th:field="*{id}"/>
 
           <label>Description:</label>
-          <input type="text" name="newDescription" required />
+          <input type="text" name="newDescription" required th:field="*{description}"/>
 
           <label>Price:</label>
-          <input type="text" name="newPrice" required />
+          <input type="text" name="newPrice" required th:field="*{price}"/>
 
           <label>Emplacement:</label>
-          <input type="text" name="newEmplacement" required />
+          <input type="text" name="newEmplacement" required th:field="*{emplacement}"/>
 
           <label>Image URL:</label>
-          <input type="text" name="newImageUrl" required />
+          <input type="text" name="newImageUrl" required th:field="*{imageMain}"/>
 
           <button type="submit">Add Article</button>
         </form>
