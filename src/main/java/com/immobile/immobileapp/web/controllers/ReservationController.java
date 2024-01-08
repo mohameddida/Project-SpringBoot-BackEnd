@@ -34,13 +34,17 @@ public class ReservationController {
 
 
 
+
         reservation.setDateDeVisite(reservation.getDateDeVisite());
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
 
 
-        reservation.setClientId((User) userDetailsService.loadUserByUsername(currentPrincipalName));
+
+//        reservation.setClientId( userDetailsService.loadUserByUsername(currentPrincipalName));
+
+
         reservation.setArticleId(articlesServices.getArticle(id));
 
 
