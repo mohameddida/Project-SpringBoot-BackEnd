@@ -7,10 +7,7 @@ import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.immobile.immobileapp.doa.entities.Reservation;
 import com.immobile.immobileapp.services.ArticlesServices;
@@ -32,24 +29,19 @@ public class ReservationController {
     @Autowired
     ArticlesServices articlesServices;
 
-    @PostMapping("/create")
-    public String createArticle(@ModelAttribute("ArticleForm") @Valid ReservationForm reservationForm,
-            BindingResult bindingResult, Model model) {
+    @PostMapping("/create/{id}")
+    public String createArticle(@PathVariable Long id , @ModelAttribute Reservation reservation ) {
 
-        if (bindingResult.hasErrors()) {
 
-            return "reservation/create";
-        }
 
-        Reservation reservation = new Reservation();
-        reservation.setDateDeVisite(reservationForm.getDateDeVisite());
+        reservation.setDateDeVisite(reservation.getDateDeVisite());
 
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
 
 
         reservation.setClientId((User) userDetailsService.loadUserByUsername(currentPrincipalName));
-        reservation.setArticleId(articlesServices.getAllArticles());
+        reservation.setArticleId(articlesServices.getArticle(id));
 
 
         reservationServices.addReservation(reservation);

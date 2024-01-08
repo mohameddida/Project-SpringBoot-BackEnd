@@ -81,7 +81,7 @@
         <input type="text" id="datepicker" placeholder="Pick a date" />
 
         <!-- Reserver Button -->
-        <form th:action="@{/reservation/create}" method="post">
+        <form th:action="@{/reservation/create/{id}(id=${art.id})}" method="post">
           <button class="reserve-button" type="submit" th:text="Reserver">Reserver</button>
         </form>
           
