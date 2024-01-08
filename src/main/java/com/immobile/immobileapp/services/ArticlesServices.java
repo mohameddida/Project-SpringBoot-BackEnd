@@ -1,8 +1,5 @@
 package com.immobile.immobileapp.services;
 
-import java.util.List;
-import java.util.Optional;
-
 import com.immobile.immobileapp.doa.entities.Article;
 
 public interface ArticlesServices {
@@ -14,6 +11,6 @@ public interface ArticlesServices {
 
     void deleteArticle(Long id);
 
-    List<Article> getAllArticles();
+    Article getAllArticles();
 
 }

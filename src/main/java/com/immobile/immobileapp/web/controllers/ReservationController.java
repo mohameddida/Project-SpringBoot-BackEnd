@@ -1,5 +1,6 @@
 package com.immobile.immobileapp.web.controllers;
 
+import com.immobile.immobileapp.doa.entities.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -34,20 +35,24 @@ public class ReservationController {
     @PostMapping("/create")
     public String createArticle(@ModelAttribute("ArticleForm") @Valid ReservationForm reservationForm,
             BindingResult bindingResult, Model model) {
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("reservation", reservationServices.getAllReservation());
-            return "reservation/create";
 
+        if (bindingResult.hasErrors()) {
+
+            return "reservation/create";
         }
 
         Reservation reservation = new Reservation();
         reservation.setDateDeVisite(reservationForm.getDateDeVisite());
-        model.addAttribute("reservationForm", reservationForm);
+
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
         String currentPrincipalName = authentication.getName();
 
-        model.addAttribute("clientId", userDetailsService.loadUserByUsername(currentPrincipalName));
-        model.addAttribute("articleId", articlesServices.getAllArticles());
+
+        reservation.setClientId((User) userDetailsService.loadUserByUsername(currentPrincipalName));
+        reservation.setArticleId(articlesServices.getAllArticles());
+
+
+        reservationServices.addReservation(reservation);
 
         return "redirect:/articles";
     }

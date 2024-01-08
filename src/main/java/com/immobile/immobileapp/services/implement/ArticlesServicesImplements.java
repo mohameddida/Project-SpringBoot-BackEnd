@@ -1,8 +1,5 @@
 package com.immobile.immobileapp.services.implement;
 
-import java.util.List;
-import java.util.Optional;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +33,7 @@ public class ArticlesServicesImplements implements ArticlesServices {
     }
 
     @Override
-    public List<Article> getAllArticles() {
+    public Article getAllArticles() {
         return articlesRepesitory.findAll();
     }
 

@@ -81,8 +81,10 @@
         <input type="text" id="datepicker" placeholder="Pick a date" />
 
         <!-- Reserver Button -->
-        <button class="reserve-button" onclick="reserveArticle()">
-          Reserver
+        <form action="/reservation/create" method="post">
+          <button class="reserve-button" type="submit">Reserver</button>
+        </form>
+          
         </button>
       </div>
 
@@ -96,7 +98,7 @@
       </div>
     </div>
 
-    <!-- Flatpickr Date Picker Library -->
+
     <script src="https://cdn.jsdelivr.net/npm/flatpickr"></script>
 
     <script>
